@@ -7,8 +7,8 @@ import kaldiio
 import torch
 import argparse
 import os
-from CTXtxt2vec.build_model.utils.io import load_yaml_config
-from CTXtxt2vec.build_model.modeling.build import build_model
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.io import load_yaml_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.build import build_model
 
 logging.basicConfig(
     level=logging.INFO,

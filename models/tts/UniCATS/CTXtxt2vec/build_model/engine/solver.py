@@ -15,12 +15,12 @@ import multiprocessing
 import copy
 from torch.nn.utils import clip_grad_norm_, clip_grad_norm
 from .tool import make_grid
-from build_model.utils.misc import instantiate_from_config, format_seconds
-from CTXtxt2vec.trainer.distributed import reduce_dict
-from CTXtxt2vec.trainer.distributed import is_primary, get_rank
-from build_model.utils.misc import get_model_parameters_info
-from build_model.engine.lr_scheduler import ReduceLROnPlateauWithWarmup, CosineAnnealingLRWithWarmup
-from build_model.engine.ema import EMA
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import instantiate_from_config, format_seconds
+from models.tts.UniCATS.CTXtxt2vec.trainer.distributed import reduce_dict
+from models.tts.UniCATS.CTXtxt2vec.trainer.distributed import is_primary, get_rank
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import get_model_parameters_info
+from models.tts.UniCATS.CTXtxt2vec.build_model.engine.lr_scheduler import ReduceLROnPlateauWithWarmup, CosineAnnealingLRWithWarmup
+from models.tts.UniCATS.CTXtxt2vec.build_model.engine.ema import EMA
 from torch.optim.lr_scheduler import ReduceLROnPlateau, CosineAnnealingLR
 
 try:

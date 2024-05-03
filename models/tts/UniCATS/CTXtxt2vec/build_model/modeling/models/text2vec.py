@@ -8,7 +8,7 @@
 import torch
 import math
 from torch import nn
-from build_model.utils.misc import instantiate_from_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import instantiate_from_config
 import time
 import numpy as np
 import os

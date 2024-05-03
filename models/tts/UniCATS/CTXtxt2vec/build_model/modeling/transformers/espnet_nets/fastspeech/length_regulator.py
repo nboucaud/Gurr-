@@ -10,7 +10,7 @@ import logging
 
 import torch
 
-from build_model.modeling.transformers.espnet_nets.nets_utils import pad_list
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.nets_utils import pad_list
 
 
 class LengthRegulator(torch.nn.Module):

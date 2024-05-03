@@ -8,7 +8,7 @@
 
 import torch
 
-from build_model.modeling.transformers.espnet_nets.transformer.embedding import PositionalEncoding
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.embedding import PositionalEncoding
 
 
 class TooShortUttError(Exception):

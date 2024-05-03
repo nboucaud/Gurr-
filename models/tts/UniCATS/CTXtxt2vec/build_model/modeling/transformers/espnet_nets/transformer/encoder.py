@@ -6,22 +6,22 @@
 import logging
 import torch
 
-from build_model.modeling.transformers.espnet_nets.nets_utils import rename_state_dict
-from build_model.modeling.transformers.espnet_nets.transformer.vgg2l import VGG2L
-from build_model.modeling.transformers.espnet_nets.transformer.attention import MultiHeadedAttention
-from build_model.modeling.transformers.espnet_nets.transformer.dynamic_conv import DynamicConvolution
-from build_model.modeling.transformers.espnet_nets.transformer.dynamic_conv2d import DynamicConvolution2D
-from build_model.modeling.transformers.espnet_nets.transformer.embedding import PositionalEncoding
-from build_model.modeling.transformers.espnet_nets.transformer.encoder_layer import EncoderLayer
-from build_model.modeling.transformers.espnet_nets.transformer.layer_norm import LayerNorm
-from build_model.modeling.transformers.espnet_nets.transformer.lightconv import LightweightConvolution
-from build_model.modeling.transformers.espnet_nets.transformer.lightconv2d import LightweightConvolution2D
-from build_model.modeling.transformers.espnet_nets.transformer.multi_layer_conv import Conv1dLinear, MultiLayeredConv1d
-from build_model.modeling.transformers.espnet_nets.transformer.positionwise_feed_forward import (
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.nets_utils import rename_state_dict
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.vgg2l import VGG2L
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.attention import MultiHeadedAttention
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.dynamic_conv import DynamicConvolution
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.dynamic_conv2d import DynamicConvolution2D
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.embedding import PositionalEncoding
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.encoder_layer import EncoderLayer
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.layer_norm import LayerNorm
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.lightconv import LightweightConvolution
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.lightconv2d import LightweightConvolution2D
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.multi_layer_conv import Conv1dLinear, MultiLayeredConv1d
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.positionwise_feed_forward import (
     PositionwiseFeedForward,  # noqa: H301
 )
-from build_model.modeling.transformers.espnet_nets.transformer.repeat import repeat
-from build_model.modeling.transformers.espnet_nets.transformer.subsampling import Conv2dSubsampling, Conv2dSubsampling6, Conv2dSubsampling8
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.repeat import repeat
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.subsampling import Conv2dSubsampling, Conv2dSubsampling6, Conv2dSubsampling8
 
 
 def _pre_hook(

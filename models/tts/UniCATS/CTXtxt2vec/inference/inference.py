@@ -3,8 +3,8 @@ import kaldiio
 import torch
 
 import os
-from CTXtxt2vec.build_model.utils.io import load_json_config
-from CTXtxt2vec.build_model.modeling.build import build_model
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.io import load_json_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.build import build_model
 
 device = "cuda"
 config = load_json_config('../trainer/OUTPUT/Libritts/configs/config.json')

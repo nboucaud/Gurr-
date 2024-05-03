@@ -3,10 +3,10 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from build_model.utils.misc import instantiate_from_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import instantiate_from_config
 import numpy as np
 from einops import rearrange
-from CTXtxt2vec.trainer.distributed import is_primary, get_rank
+from models.tts.UniCATS.CTXtxt2vec.trainer.distributed import is_primary, get_rank
 
 from inspect import isfunction
 from torch.cuda.amp import autocast

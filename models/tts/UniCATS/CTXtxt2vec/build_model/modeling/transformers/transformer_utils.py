@@ -7,7 +7,7 @@ import numpy as np
 from einops import rearrange
 
 from torch.utils.checkpoint import checkpoint as checkpoint_fn
-from build_model.modeling.transformers.espnet_nets.transformer.embedding import ScaledPositionalEncoding
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.embedding import ScaledPositionalEncoding
 
 
 class FullAttention(nn.Module):

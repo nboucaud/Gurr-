@@ -485,7 +485,7 @@ def rename_state_dict(
 def get_activation(act):
     """Return activation function."""
     # Lazy load to avoid unused import
-    from ctx_text2vec.modeling.transformers.espnet_nets.conformer import Swish
+    from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.conformer import Swish
 
     activation_funcs = {
         "hardtanh": torch.nn.Hardtanh,

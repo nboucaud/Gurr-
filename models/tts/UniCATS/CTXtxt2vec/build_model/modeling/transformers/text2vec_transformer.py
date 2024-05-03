@@ -2,13 +2,13 @@ import random
 import torch
 from torch import nn
 import torch.nn.functional as F
-from build_model.modeling.transformers.espnet_nets.transformer.encoder import Encoder as TransformerEncoder
-from build_model.modeling.transformers.espnet_nets.transformer.embedding import ScaledPositionalEncoding
-from build_model.modeling.transformers.espnet_nets.nets_utils import make_pad_mask
-from build_model.modeling.transformers.espnet_nets.fastspeech.duration_predictor import DurationPredictor, DurationPredictorLoss
-from build_model.modeling.transformers.espnet_nets.fastspeech.length_regulator import LengthRegulator
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.encoder import Encoder as TransformerEncoder
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.embedding import ScaledPositionalEncoding
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.nets_utils import make_pad_mask
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.fastspeech.duration_predictor import DurationPredictor, DurationPredictorLoss
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.fastspeech.length_regulator import LengthRegulator
 
-from build_model.utils.misc import instantiate_from_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import instantiate_from_config
 import numpy as np
 
 from torch.cuda.amp import autocast

@@ -8,7 +8,7 @@
 
 import torch
 
-from build_model.modeling.transformers.espnet_nets.transformer.layer_norm import LayerNorm
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.espnet_nets.transformer.layer_norm import LayerNorm
 
 
 class DurationPredictor(torch.nn.Module):

@@ -1,6 +1,6 @@
 import torch
 from torch.utils.data import ConcatDataset
-from build_model.utils.misc import instantiate_from_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import instantiate_from_config
 
 
 def build_dataloader(config, args=None, return_dataset=False):

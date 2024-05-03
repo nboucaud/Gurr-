@@ -4,8 +4,7 @@ import torch
 from torch import distributed as dist
 from torch import multiprocessing as mp
 
-# import distributed as dist_fn
-import CTXtxt2vec.trainer.distributed as dist_fn
+import models.tts.UniCATS.CTXtxt2vec.trainer.distributed as dist_fn
 
 def find_free_port():
     import socket
