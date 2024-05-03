@@ -3,7 +3,7 @@ import os
 import warnings
 import time
 import torch
-from CTXtxt2vec.build_model.modeling.build import build_model
+from build_model.modeling.build import build_model
 from CTXtxt2vec.dataset.build import build_dataloader
 from CTXtxt2vec.build_model.utils.misc import seed_everything, merge_opts_to_config, modify_config_for_debug
 from CTXtxt2vec.build_model.utils.io import load_json_config
