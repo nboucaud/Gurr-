@@ -7,7 +7,7 @@ import kaldiio
 import torch
 import argparse
 import os
-from models.tts.UniCATS.CTXtxt2vec.build_model.utils.io import load_yaml_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.io import load_json_config
 from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.build import build_model
 
 logging.basicConfig(
@@ -19,13 +19,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--eval-set", default="eval_clean", type=str, help="A data set directory in `data/`. "
                                                                            "This should contain text, duration, feats.scp, utt2prompt files.")
-    parser.add_argument("--expdir", default='../trainer/OUTPUT/Libritts', type=str, help="model training directory")
+    parser.add_argument("--expdir", default='OUTPUT/Libritts', type=str, help="model training directory")
     parser.add_argument("--device", default="cuda", type=str)
     args = parser.parse_args()
     eval_set = args.eval_set
     expdir = args.expdir
     device = args.device
-    config = load_yaml_config(f'{expdir}/configs/config.yaml')
+    config = load_json_config(f'{expdir}/configs/config.json')
     model = build_model(config).to(device)
     ckpt = torch.load(f"{expdir}/checkpoint/last.pth")
     outdir = f"{expdir}/syn/{eval_set}/"
@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     lexicon = {}
 
-    lexicon_file = "../../../../UniCATS-txt2vec-data/data/lang_1phn/train_all_units.txt"
+    lexicon_file = "data/lang_1phn/train_all_units.txt"
     logging.info(f"Reading {lexicon_file} for valid phones ...")
     with open(lexicon_file, 'r') as f:
         for line in f.readlines():
@@ -41,7 +41,7 @@ if __name__ == '__main__':
             lexicon[txt_token] = int(token_id)
 
     vqid_table = []
-    label2vqidx_file = "../../../../UniCATS-txt2vec-data/feats/vqidx/label2vqidx"
+    label2vqidx_file = "feats/vqidx/label2vqidx"
     logging.info(f"Reading {label2vqidx_file} for valid VQ indexes")
     with open(label2vqidx_file, 'r') as f:
         for line in f.readlines():
