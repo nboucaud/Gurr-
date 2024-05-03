@@ -15,8 +15,8 @@
             "transformer_config": {
               "target": "models.tts.UniCATS.CTXtxt2vec.build_model.modeling.transformers.transformer_utils.DiffusionTransformer",
               "params": {
-                "codebook_path": "feats/vqidx/codebook.npy",
-                "label2vqidx_path": "feats/vqidx/label2vqidx",
+                "codebook_path": "UniCATS-txt2vec-data/feats/vqidx/codebook.npy",
+                "label2vqidx_path": "UniCATS-txt2vec-data/feats/vqidx/label2vqidx",
                 "attn_type": "selfcross",
                 "n_layer": 12,
                 "n_embd": 512,
@@ -87,8 +87,8 @@
         {
           "target": "models.tts.UniCATS.CTXtxt2vec.dataset.tts_dataset.TTSDataset",
           "params": {
-            "data_root": "data/train_all",
-            "lexicon_path": "data/lang_1phn/train_all_units.txt",
+            "data_root": "UniCATS-txt2vec-data/data/train_all",
+            "lexicon_path": "UniCATS-txt2vec-data/data/lang_1phn/train_all_units.txt",
             "max_seconds": 32,
             "min_seconds": 5,
             "input_hz": 100
@@ -99,8 +99,8 @@
         {
           "target": "models.tts.UniCATS.CTXtxt2vec.dataset.tts_dataset.TTSDataset",
           "params": {
-            "data_root": "data/dev_all",
-            "lexicon_path": "data/lang_1phn/train_all_units.txt",
+            "data_root": "UniCATS-txt2vec-data/data/dev_all",
+            "lexicon_path": "UniCATS-txt2vec-data/data/lang_1phn/train_all_units.txt",
             "max_seconds": 32,
             "min_seconds": 5,
             "input_hz": 100
