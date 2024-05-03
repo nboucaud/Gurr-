@@ -3,23 +3,23 @@ import kaldiio
 import torch
 
 import os
-from CTXtxt2vec.build_model.utils.io import load_yaml_config
+from CTXtxt2vec.build_model.utils.io import load_json_config
 from CTXtxt2vec.build_model.modeling.build import build_model
 
 device = "cuda"
-config = load_yaml_config('OUTPUT/Libritts/configs/config.yaml')
+config = load_json_config('OUTPUT/Libritts/configs/config.json')
 model = build_model(config).to(device)
 ckpt = torch.load("OUTPUT/Libritts/checkpoint/last.pth")
 model.load_state_dict(ckpt["model"])
 
 lexicon = {}
-with open("data/lang_1phn/train_all_units.txt", 'r') as f:
+with open("../../../../UniCATS-txt2vec-data/data/lang_1phn/train_all_units.txt", 'r') as f:
     for line in f.readlines():
         txt_token, token_id = line.strip().split()
         lexicon[txt_token] = int(token_id)
 
 vqid_table = []
-with open("feats/vqidx/label2vqidx", 'r') as f:
+with open("../../../../UniCATS-txt2vec-data/feats/vqidx/label2vqidx", 'r') as f:
     for line in f.readlines():
         line = line.strip().split()
         label = int(line[0])
@@ -27,7 +27,7 @@ with open("feats/vqidx/label2vqidx", 'r') as f:
 vqid_table = torch.stack(vqid_table, dim=0).to(device)
 
 feat_writer = kaldiio.WriteHelper("ark,scp:{o}.ark,{o}.scp".format(o=os.path.join(os.getcwd(), "OUTPUT/Libritts/syn/feats")))
-with open("data/eval_all/text") as f:
+with open("../../../../UniCATS-txt2vec-data/data/eval_all/text") as f:
     for l in tqdm(f.readlines()):
         utt, text = l.strip().split(maxsplit=1)
         text = torch.LongTensor([lexicon[w] for w in text.split()]).unsqueeze(0).to(device)

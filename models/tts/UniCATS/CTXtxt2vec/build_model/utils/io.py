@@ -9,12 +9,22 @@ def load_yaml_config(path):
         config = yaml.full_load(f)
     return config
 
+def load_json_config(path):
+    with open(path) as file:
+        config = json.load(file)
+    return config
+
 
 def save_config_to_yaml(config, path):
     assert path.endswith('.yaml')
     with open(path, 'w') as f:
         f.write(yaml.dump(config))
         f.close()
+
+def save_config_to_json(config, path):
+    assert path.endswith('.json')
+    with open(path, 'w') as f:
+        json.dump(config, f, indent=4)
 
 
 def save_dict_to_json(d, path, indent=None):

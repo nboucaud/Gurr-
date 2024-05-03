@@ -8,7 +8,7 @@ import sys
 import torch
 import logging
 
-from build_model.utils.io import write_args, save_config_to_yaml
+from build_model.utils.io import write_args, save_config_to_json
 from CTXtxt2vec.trainer.distributed import is_primary
 import torch.utils.tensorboard as tensorboard
 
@@ -40,7 +40,7 @@ class Logger(object):
 
     def save_config(self, config):
         if self.is_primary:
-            save_config_to_yaml(config, os.path.join(self.config_dir, 'config.yaml'))
+            save_config_to_json(config, os.path.join(self.config_dir, 'config.json'))
 
     def log_info(self, info, check_primary=True):
         if self.is_primary or (not check_primary):

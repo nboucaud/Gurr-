@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     lexicon = {}
 
-    lexicon_file = "data/lang_1phn/train_all_units.txt"
+    lexicon_file = "../../../../UniCATS-txt2vec-data/data/lang_1phn/train_all_units.txt"
     logging.info(f"Reading {lexicon_file} for valid phones ...")
     with open(lexicon_file, 'r') as f:
         for line in f.readlines():
@@ -41,7 +41,7 @@ if __name__ == '__main__':
             lexicon[txt_token] = int(token_id)
 
     vqid_table = []
-    label2vqidx_file = "feats/vqidx/label2vqidx"
+    label2vqidx_file = "../../../../UniCATS-txt2vec-data/feats/vqidx/label2vqidx"
     logging.info(f"Reading {label2vqidx_file} for valid VQ indexes")
     with open(label2vqidx_file, 'r') as f:
         for line in f.readlines():

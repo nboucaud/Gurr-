@@ -6,7 +6,7 @@ import torch
 from CTXtxt2vec.build_model.modeling.build import build_model
 from CTXtxt2vec.dataset.build import build_dataloader
 from CTXtxt2vec.build_model.utils.misc import seed_everything, merge_opts_to_config, modify_config_for_debug
-from CTXtxt2vec.build_model.utils.io import load_yaml_config
+from CTXtxt2vec.build_model.utils.io import load_json_config
 from CTXtxt2vec.build_model.engine.logger import Logger
 from CTXtxt2vec.build_model.engine.solver import Solver
 from CTXtxt2vec.trainer.launch import launch
@@ -27,7 +27,7 @@ DIST_URL = 'tcp://%s:%s' % (MASTER_ADDR, MASTER_PORT)
 
 def get_args():
     parser = argparse.ArgumentParser(description='PyTorch Training script')
-    parser.add_argument('--config_file', type=str, default='configs/vqvae_celeba_attribute_cond.yaml',
+    parser.add_argument('--config_file', type=str, default='../../../../config/UniCATS_txt2vec.json',
                         help='path of config file')
     parser.add_argument('--name', type=str, default='',
                         help='the name of this experiment, if not provided, set to'
@@ -84,11 +84,11 @@ def get_args():
 
     if args.resume_name is not None:
         args.name = args.resume_name
-        args.config_file = os.path.join(args.output, args.resume_name, 'configs', 'config.yaml')
+        args.config_file = os.path.join(args.output, args.resume_name, 'configs', 'config.json')
         args.auto_resume = True
     else:
         if args.name == '':
-            args.name = os.path.basename(args.config_file).replace('.yaml', '')
+            args.name = os.path.basename(args.config_file).replace('.json', '')
         if args.timestamp:
             assert not args.auto_resume, "for timstamp, auto resume is hard to find the save directory"
             time_str = time.strftime('%Y-%m-%d-%H-%M')
@@ -132,7 +132,8 @@ def main_worker(local_rank, args):
     args.distributed = args.world_size > 1
 
     # load config
-    config = load_yaml_config(args.config_file)
+    # config = load_yaml_config(args.config_file)
+    config = load_json_config(args.config_file)
     config = merge_opts_to_config(config, args.opts)
     if args.debug:
         config = modify_config_for_debug(config)
