@@ -7,9 +7,9 @@ from CTXtxt2vec.build_model.utils.io import load_json_config
 from CTXtxt2vec.build_model.modeling.build import build_model
 
 device = "cuda"
-config = load_json_config('OUTPUT/Libritts/configs/config.json')
+config = load_json_config('../trainer/OUTPUT/Libritts/configs/config.json')
 model = build_model(config).to(device)
-ckpt = torch.load("OUTPUT/Libritts/checkpoint/last.pth")
+ckpt = torch.load("../trainer/OUTPUT/Libritts/checkpoint/last.pth")
 model.load_state_dict(ckpt["model"])
 
 lexicon = {}

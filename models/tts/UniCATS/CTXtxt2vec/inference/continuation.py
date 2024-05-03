@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--eval-set", default="eval_clean", type=str, help="A data set directory in `data/`. "
                                                                            "This should contain text, duration, feats.scp, utt2prompt files.")
-    parser.add_argument("--expdir", default='OUTPUT/Libritts', type=str, help="model training directory")
+    parser.add_argument("--expdir", default='../trainer/OUTPUT/Libritts', type=str, help="model training directory")
     parser.add_argument("--device", default="cuda", type=str)
     args = parser.parse_args()
     eval_set = args.eval_set
