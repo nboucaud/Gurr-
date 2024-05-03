@@ -3,13 +3,13 @@ import os
 import warnings
 import time
 import torch
-from CTXtxt2vec.build_model.modeling.build import build_model
-from CTXtxt2vec.dataset.build import build_dataloader
-from CTXtxt2vec.build_model.utils.misc import seed_everything, merge_opts_to_config, modify_config_for_debug
-from CTXtxt2vec.build_model.utils.io import load_json_config
-from CTXtxt2vec.build_model.engine.logger import Logger
-from CTXtxt2vec.build_model.engine.solver import Solver
-from CTXtxt2vec.trainer.launch import launch
+from models.tts.UniCATS.CTXtxt2vec.build_model.modeling.build import build_model
+from models.tts.UniCATS.CTXtxt2vec.dataset.build import build_dataloader
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.misc import seed_everything, merge_opts_to_config, modify_config_for_debug
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.io import load_json_config
+from models.tts.UniCATS.CTXtxt2vec.build_model.engine.logger import Logger
+from models.tts.UniCATS.CTXtxt2vec.build_model.engine.solver import Solver
+from models.tts.UniCATS.CTXtxt2vec.trainer.launch import launch
 import logging
 
 logging.basicConfig(
