@@ -8,8 +8,8 @@ import sys
 import torch
 import logging
 
-from build_model.utils.io import write_args, save_config_to_json
-from CTXtxt2vec.trainer.distributed import is_primary
+from models.tts.UniCATS.CTXtxt2vec.build_model.utils.io import write_args, save_config_to_json
+from models.tts.UniCATS.CTXtxt2vec.trainer.distributed import is_primary
 import torch.utils.tensorboard as tensorboard
 
 
