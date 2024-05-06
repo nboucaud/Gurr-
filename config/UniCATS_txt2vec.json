@@ -36,7 +36,7 @@
     "solver": {
       "base_lr": 3.0e-6,
       "adjust_lr": "none",
-      "max_epochs": 500,
+      "max_epochs": 50,
       "save_epochs": 1,
       "validation_epochs": 10,
       "sample_iterations": "epoch",
