@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Copyright 2020 Tomoki Hayashi
-#  MIT License (https://opensource.org/licenses/MIT)
-
 . ./cmd.sh || exit 1;
 # . ./path.sh || exit 1;
 
@@ -14,8 +11,11 @@ world_size=1          # number of workers in training
 distributed_init=     # file path for init_process_group in distributed training
 nj=16     # number of parallel jobs in feature extraction
 
+work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
+cd $work_dir
+
 # NOTE(kan-bayashi): renamed to conf to avoid conflict in parse_options.sh
-conf=conf/ctxv2w.v1.yaml
+conf=config/UniCATS_vec2wav/ctxv2w.v1.yaml
 sampling_rate=16000        # sampling frequency
 num_mels=80     # number of mel basis
 hop_size=160    # number of shift points
@@ -27,8 +27,8 @@ part="all" # "clean" or "all"
              # if set to "all", use clean + other data
 
 # directory path setting
-datadir=$PWD/data
-featdir=$PWD/feats
+datadir=$work_dir/data
+featdir=$work_dir/feats
 
 # training related setting
 tag=""     # tag for directory to save model
@@ -46,12 +46,16 @@ dev_set="dev_${part}"           # name of development data directory
 eval_set="eval_${part}"
 
 # shellcheck disable=SC1091
-. parse_options.sh || exit 1;
+. utils/UniCATS/utils/parse_options.sh || exit 1;
 
 set -eo pipefail
-chmod +x ctx_vec2wav/bin/train.py ctx_vec2wav/bin/decode.py
+chmod +x models/tts/UniCATS/CTXvec2wav/trainer/train.py models/tts/UniCATS/CTXvec2wav/bin/decode.py
 
 vqdir=feats/vqidx/
+
+# fix path in data/xxx_all/wav.scp and feats/normed_ppe/xxx_all/feats.scp
+python utils/UniCATS/utils/fix_path.py
+
 
 if [ -z "${tag}" ]; then
     expdir="exp/${train_set}_$(basename "${conf}" .yaml)"
@@ -70,7 +74,7 @@ if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
     echo "CUDA Devices: $CUDA_VISIBLE_DEVICES"
     echo "Training start. See the progress via ${expdir}/train.log."
     ${cuda_cmd} --gpu 1 "${expdir}/log/train.log" \
-        train.py \
+        models/tts/UniCATS/CTXvec2wav/trainer/train.py \
             --config "${conf}" \
             --train-wav-scp $datadir/${train_set}/wav.scp \
             --train-vqidx-scp ${featdir}/vqidx/${train_set}/feats.scp \
@@ -112,10 +116,10 @@ if [ "${stage}" -le 3 ] && [ "${stop_stage}" -ge 3 ]; then
         feat-to-len.py scp:${featdir}/normed_fbank/${name}/feats.scp > ${datadir}/${name}/utt2num_frames
         echo "$(wc -l ${featdir}/normed_fbank/${name}/feats.scp) utterances for decoding"
 
-        python local/build_prompt_feat.py ${datadir}/${name}/utt2num_frames ${datadir}/${name}/utt2spk ${featdir}/normed_fbank/${name}/feats.scp 300 > ${datadir}/${name}/prompt.scp
+        python utils/UniCATS/vec2wav_local/build_prompt_feat.py ${datadir}/${name}/utt2num_frames ${datadir}/${name}/utt2spk ${featdir}/normed_fbank/${name}/feats.scp 300 > ${datadir}/${name}/prompt.scp
         echo "Decoding start. See the progress via ${outdir}/${name}/log/decode.log."
         ${cuda_cmd} --gpu 1 "${outdir}/${name}/log/decode.log" \
-            decode.py \
+            models/tts/UniCATS/CTXvec2wav/bin/decode.py \
                 --feats-scp ${featdir}/vqidx/${name}/feats.scp \
                 --prompt-scp ${datadir}/${name}/prompt.scp \
                 --num-frames ${datadir}/${name}/utt2num_frames \

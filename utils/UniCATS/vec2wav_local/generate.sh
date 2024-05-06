@@ -1,10 +1,10 @@
 #!/bin/bash
 
 sampling_rate=16000
-train_cmd=utils/run.pl
+train_cmd=utils/UniCATS/utils/run.pl
 train_set=train_all
 featdir=feats
-conf=conf/hifigan.v1.yaml
+conf=config/hifigan.v1.yaml
 
 # pretrained model
 expdir=exp/${train_set}_$(basename "${conf}" .yaml)
@@ -17,7 +17,7 @@ stop_stage=100
 eval_dir=
 
 . ./path.sh || exit 1;
-. utils/parse_options.sh || exit 1;
+. utils/UniCATS/utils/parse_options.sh || exit 1;
 
 outdir=${eval_dir}/$(basename "${conf}" .yaml)
 

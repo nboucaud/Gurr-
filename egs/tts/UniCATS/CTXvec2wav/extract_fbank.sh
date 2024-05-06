@@ -19,17 +19,20 @@ eval_set="eval_${part}"         # name of evaluation data directory
 stage=0
 stop_stage=100
 
-. parse_options.sh || exit 1;  # This allows you to pass command line arguments, e.g. --fmax 7600
+work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
+cd $work_dir
+
+sh utils/UniCATS/utils/parse_options.sh || exit 1;  # This allows you to pass command line arguments, e.g. --fmax 7600
 set -eo pipefail
 
-datadir=$PWD/data
-featdir=$PWD/feats
+datadir=$work_dir/data
+featdir=$work_dir/feats
 
 if [ "${stage}" -le 0 ] && [ "${stop_stage}" -ge 0 ]; then
     echo "Fbank Feature Extraction"
     for x in ${train_set} ${dev_set} ${eval_set} ; do
-        utils/fix_data_dir.sh ${datadir}/${x}
-        make_fbank.sh --cmd "${train_cmd}" --nj ${nj} \
+        utils/UniCATS/utils/fix_data_dir.sh ${datadir}/${x}
+        utils/UniCATS/utils/make_fbank.sh --cmd "${train_cmd}" --nj ${nj} \
             --fs ${sampling_rate} \
             --fmax "${fmax}" \
             --fmin "${fmin}" \
@@ -47,11 +50,11 @@ fi
 if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
     echo "Cepstral Mean Variance Normalization"
     feat_name=fbank
-    compute-cmvn-stats.py scp:${featdir}/${feat_name}/${train_set}/feats.scp ${featdir}/${feat_name}/${train_set}/cmvn.ark
+    utils/UniCATS/utils/compute-cmvn-stats.py scp:${featdir}/${feat_name}/${train_set}/feats.scp ${featdir}/${feat_name}/${train_set}/cmvn.ark
     for x in ${train_set} ${dev_set} ${eval_set} ; do
         echo "Applying normalization for dataset ${x}"
         mkdir -p ${featdir}/normed_${feat_name}/${x} ;
-        apply-cmvn.py --norm-vars=true --compress True \
+        utils/UniCATS/utils/apply-cmvn.py --norm-vars=true --compress True \
                     ${featdir}/${feat_name}/${train_set}/cmvn.ark \
                     scp:${featdir}/${feat_name}/${x}/feats.scp \
                     ark,scp:${featdir}/normed_${feat_name}/${x}/feats.ark,${featdir}/normed_${feat_name}/${x}/feats.scp

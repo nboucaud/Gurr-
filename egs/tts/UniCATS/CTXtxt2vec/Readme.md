@@ -20,6 +20,7 @@ There are five stages in total:
 ## 1. Data Preparation
 
 ### Dataset Download
+
 You can use the commonly used TTS dataset to train TTS model, e.g., LJSpeech, VCTK, LibriTTS, etc. However, the LibriTTS dataset is strongly recommended for learning the UniCATS project, as many of the data prepation steps are implemented so that you can focus on what really matter. And you don't need to download the dataset, which comes large in size, as the features are already extracted. 
 
 If you are using dataset other than the LibriTTS, please first download the dataset. How to download dataset is detailed [here](../../datasets/README.md).
@@ -35,9 +36,11 @@ After that, unzip them to the project's root directory, Amphion/. You should get
 Note that the extracted feature is for the complete LibriTTS dataset. 
 
 ### If you're using dataset other than LibriTTS
+
 Please prepare the following for the dataset you are using:
 
 #### Date manifest:
+
 ```
 data
 ├── train_all
@@ -52,7 +55,9 @@ data
 └── lang_1phn
           └── train_all_units.txt  # mapping between valid phones and their indexes
 ```
+
 #### Kaldi-style features
+
 ```
 feats
 ├── train_all
@@ -69,6 +74,7 @@ feats
 Note: If you are using other names for the data/ and feats/ folder, please update the in the exp_config.json file, corrospondingly. 
 
 #### Data manifest:
+
 1. duration: 
 The duration file is of the following format: 
 ```

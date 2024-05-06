@@ -1,11 +1,12 @@
 exp_dir=$(cd `dirname $0`; pwd)
-work_dir=$(dirname $(dirname $(dirname $exp_dir)))
+work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
 
 export WORK_DIR=$work_dir
 export PYTHONPATH=$work_dir
 export PYTHONIOENCODING=UTF-8
 
 cd $work_dir
+python utils/UniCATS/utils/merge_json.py
 
 echo "Working Directory: $work_dir"
 
@@ -45,9 +46,9 @@ fi
 ######## Training ###########
 if [ "$running_stage" -eq 2 ]; then
     echo "Starting Stage 2: Training"
-    CUDA_VISIBLE_DEVICES=$gpu python ../../../models/tts/UniCATS/CTXtxt2vec/trainer/train.py \
+    CUDA_VISIBLE_DEVICES=$gpu python models/tts/UniCATS/CTXtxt2vec/trainer/train.py \
         --name $exp_name \
-        --config_file ../../../../../config/UniCATS_txt2vec.json \
+        --config_file config/UniCATS_txt2vec.json \
         --num_node 1 \
         --tensorboard \
         --auto_resume
@@ -56,6 +57,6 @@ fi
 ######## Inference ###########
 if [ "$running_stage" -eq 3 ]; then
     echo "Starting Stage 3: Inference"
-    CUDA_VISIBLE_DEVICES=$gpu python ../../../models/tts/UniCATS/CTXtxt2vec/inference/continuation.py \
+    CUDA_VISIBLE_DEVICES=$gpu python models/tts/UniCATS/CTXtxt2vec/inference/continuation.py \
         --eval-set eval_all
 fi
