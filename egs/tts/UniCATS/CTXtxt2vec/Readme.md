@@ -148,7 +148,7 @@ where every line is organized as utt-to-synthesize prompt-utt. utt-to-synthesize
 ### If you are using the LibriTTS data set
 You can the [official utt2prompt file](https://cpdu.github.io/unicats/resources/testsetB_utt2prompt) for test set B in the paper. You can download that and save to data/eval_all/utt2prompt.
 
-### If you are using other than evaluation dataset. 
+### If you are using other dataset. 
 You should prepare you own utt2prompt file, following the format given above, and place it under data/eval_all/. Note that the utt-to-synthesize and prompt-utt keys should both be present in feats.scp for indexing.
 
 After that, decoding with context prepended (a.k.a. continuation) can be performed by:
