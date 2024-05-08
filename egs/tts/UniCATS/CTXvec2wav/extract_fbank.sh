@@ -19,15 +19,12 @@ eval_set="eval_${part}"         # name of evaluation data directory
 stage=0
 stop_stage=100
 
-exp_dir=$(cd `dirname $0`; pwd)
-work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
-cd $work_dir
 
 sh utils/UniCATS/utils/parse_options.sh || exit 1;  # This allows you to pass command line arguments, e.g. --fmax 7600
 set -eo pipefail
 
-datadir=$work_dir/data
-featdir=$work_dir/feats
+datadir=/data
+featdir=/feats
 
 if [ "${stage}" -le 0 ] && [ "${stop_stage}" -ge 0 ]; then
     echo "Fbank Feature Extraction"
