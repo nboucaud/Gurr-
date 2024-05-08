@@ -11,7 +11,9 @@ world_size=1          # number of workers in training
 distributed_init=     # file path for init_process_group in distributed training
 nj=16     # number of parallel jobs in feature extraction
 
-
+exp_dir=$(cd `dirname $0`; pwd)
+work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
+cd $work_dir
 
 # NOTE(kan-bayashi): renamed to conf to avoid conflict in parse_options.sh
 conf=config/UniCATS_vec2wav/ctxv2w.v1.yaml
@@ -26,8 +28,8 @@ part="all" # "clean" or "all"
              # if set to "all", use clean + other data
 
 # directory path setting
-datadir=/data
-featdir=/feats
+datadir=$work_dir/data
+featdir=$work_dir/feats
 
 # training related setting
 tag=""     # tag for directory to save model
