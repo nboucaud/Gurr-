@@ -1,7 +1,7 @@
 import json
 
-base_json_path = '../../../config/UniCATS_txt2vec.json'  
-example_json_path = '../../../egs/tts/UniCATS/CTStxt2vec/exp_config.json'  
+base_json_path = 'config/UniCATS_txt2vec.json'  
+example_json_path = 'egs/tts/UniCATS/CTStxt2vec/exp_config.json'  
 
 merged_output_path = base_json_path
 
