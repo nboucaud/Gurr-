@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./cmd.sh || exit 1;
+. egs/tts/UniCATS/CTXvec2wav/cmd.sh || exit 1;
 
 nj=16     # number of parallel jobs in feature extraction
 sampling_rate=16000        # sampling frequency
