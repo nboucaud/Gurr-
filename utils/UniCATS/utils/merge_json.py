@@ -10,12 +10,28 @@ def load_json(file_path):
         return json.load(file)
 
 def save_merged_json(base_config, override_config, output_path):
-    base_config.update(override_config)
+    # Merge override_config into base_config
+    merge_dicts(base_config, override_config)
+    
+    # Write the merged configuration back to base.json
     with open(output_path, 'w') as file:
         json.dump(base_config, file, indent=4)
 
-if __name__ == "__main__":
-    base_config = load_json(base_json_path)
-    example_config = load_json(example_json_path)
+def merge_dicts(base_dict, override_dict):
+    for key, value in override_dict.items():
+        if key not in base_dict:
+            base_dict[key] = value
+        elif isinstance(value, dict) and isinstance(base_dict[key], dict):
+            merge_dicts(base_dict[key], value)
+        else:
+            base_dict[key] = value
 
-    save_merged_json(base_config, example_config, merged_output_path)
+# Load base.json and example.json
+base_config = load_json(base_json_path)
+example_config = load_json(example_json_path)
+
+# Output path set to base.json to update it with merged configuration
+output_path = merged_output_path
+
+# Save the merged configuration to base.json
+save_merged_json(base_config, example_config, output_path)
