@@ -6,7 +6,7 @@ export PYTHONPATH=$work_dir
 export PYTHONIOENCODING=UTF-8
 
 cd $work_dir
-python utils/UniCATS/utils/merge_json.py
+# python utils/UniCATS/utils/merge_json.py
 
 echo "Working Directory: $work_dir"
 
