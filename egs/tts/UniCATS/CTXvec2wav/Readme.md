@@ -41,8 +41,8 @@ For the features, we need:
 * Mel spectrograms (FBanks). Run the following command to extract the mel spectrograms from the data manifest and the data features. Note that the script assumes that data/ and feats/ folder are directly placed under the project's root folder Amphion/.
 
 ```bash
-nj= 16 # parallel jobs. Set this according to your CPU cores.
-bash egs/tts/CTXvec2wav/extract_fbank.sh --nj $nj --stage 0 --stop_stage 1  # Default: 80-dim with 10ms frame shift
+nj= 8 # parallel jobs. Set this according to your CPU cores.
+sh egs/tts/UniCATS/CTXvec2wav/extract_fbank.sh --nj $nj --stage 0 --stop_stage 1  # Default: 80-dim with 10ms frame shift
 # Stage 0 extracts fbank in parallel. Stage 1 performs normalization.
 ```
 
