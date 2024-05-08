@@ -126,6 +126,7 @@ def format_seconds(seconds):
 def instantiate_from_config(config):
     if config is None:
         return None
+    print(config)
     if not "target" in config:
         raise KeyError("Expected key `target` to instantiate.")
     module, cls = config["target"].rsplit(".", 1)
