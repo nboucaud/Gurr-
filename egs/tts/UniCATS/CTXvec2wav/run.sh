@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./cmd.sh || exit 1;
+. egs/tts/UniCATS/CTXvec2wav/cmd.sh || exit 1;
 # . ./path.sh || exit 1;
 
 # basic settings
@@ -11,6 +11,7 @@ world_size=1          # number of workers in training
 distributed_init=     # file path for init_process_group in distributed training
 nj=16     # number of parallel jobs in feature extraction
 
+exp_dir=$(cd `dirname $0`; pwd)
 work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
 cd $work_dir
 

@@ -19,6 +19,7 @@ eval_set="eval_${part}"         # name of evaluation data directory
 stage=0
 stop_stage=100
 
+exp_dir=$(cd `dirname $0`; pwd)
 work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
 cd $work_dir
 

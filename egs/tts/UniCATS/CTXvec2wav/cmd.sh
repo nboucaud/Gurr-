@@ -30,7 +30,7 @@
 # Select the backend used by run.sh from "local", "stdout", "sge", "slurm", or "ssh"
 cmd_backend="local"
 
-
+exp_dir=$(cd `dirname $0`; pwd)
 work_dir=$(dirname $(dirname $(dirname $(dirname $exp_dir))))
 cd $work_dir
 
