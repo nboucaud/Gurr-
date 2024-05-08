@@ -42,7 +42,7 @@ For the features, we need:
 
 ```bash
 nj= 8 # parallel jobs. Set this according to your CPU cores.
-sh egs/tts/UniCATS/CTXvec2wav/extract_fbank.sh --nj $nj --stage 0 --stop_stage 1  # Default: 80-dim with 10ms frame shift
+bash egs/tts/UniCATS/CTXvec2wav/extract_fbank.sh --nj $nj --stage 0 --stop_stage 1  # Default: 80-dim with 10ms frame shift
 # Stage 0 extracts fbank in parallel. Stage 1 performs normalization.
 ```
 
@@ -55,7 +55,7 @@ Note: the path in data/xxx_all/wav.scp and the path in feats/normed_ppe/xxx_all/
 Please run the following script to get spk2utt (speaker to utterance), utt2spk (utterance to speaker), and wav.scp for development set, evaluation set, and train set.
 
 ```bash
-sh utils/UniCATS/vec2wav_local/data_prep.sh dataset_dir destination_dir
+bash utils/UniCATS/vec2wav_local/data_prep.sh dataset_dir destination_dir
 # dataset dir: the path to a subset of your dataset, example: /LibriTTS/train_all
 # destination_dir: the path of the data manifest folder, example: data/train_all
 ```
@@ -69,7 +69,7 @@ The VQ index feats.ark and feats.scp are generated using the [fairseq's vq-wav2v
 Please run the following to get the PPE auxiliary features:
 
 ```bash
-sh utils/UniCATS/vec2wav_local/make_ppe.sh your_dataset_path log_output_path feature_output_path
+bash utils/UniCATS/vec2wav_local/make_ppe.sh your_dataset_path log_output_path feature_output_path
 ```
 
 * Mel spectrograms (FBanks). 
@@ -81,7 +81,7 @@ This step is essentially the same as the mel spectrogram when using the LibriTTS
 You can start traing by running the following when you have your data/ and feats/ ready as introduced in the previous section.
 
 ```bash
-sh egs/tts/UniCATS/CTXvec2wav/run.sh --stage 2 --stop_stage 2 
+bash egs/tts/UniCATS/CTXvec2wav/run.sh --stage 2 --stop_stage 2 
 ```
 
 The checkpoint will be saved to Amphion/exp/train_all_ctxv2w.v1/*pkl. Checkpoint trained on the LibriTTS dataset with sampling rate 16K and 24K are provided: [16K](https://huggingface.co/cantabile-kwok/ctx_vec2wav_libritts_all/resolve/main/ctx_v2w.pkl?download=true), [24K](https://huggingface.co/cantabile-kwok/ctx_vec2wav_libritts_all/resolve/main/ctx_v2w_24k.pkl?download=true).
@@ -92,13 +92,13 @@ Please place the .pkl file under your expriment dir (example: exp/train_all_ctxv
 You can infer on the entire dataset by
 
 ```bash
-sh egs/tts/UniCATS/CTXvec2wav/run.sh --stage 3 --stop_stage 3
+bash egs/tts/UniCATS/CTXvec2wav/run.sh --stage 3 --stop_stage 3
 ```
 
 Or only infer a subset by:
 
 ```bash
-sh egs/tts/UniCATS/CTXvec2wav/run.sh --stage 3 --stop_stage 3 --eval_set $which_set
+bash egs/tts/UniCATS/CTXvec2wav/run.sh --stage 3 --stop_stage 3 --eval_set $which_set
 # For example: "--eval_set dev_all"
 ```
 

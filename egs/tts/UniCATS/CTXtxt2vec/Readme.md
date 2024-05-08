@@ -133,7 +133,7 @@ After the improvement on loss is nuance.
 Run the `run.sh` as the training stage (set  `--stage 2`). After the training starts, checkpoints and logs will be saved in Amphion/OUTPUT/YourExptName.
 
 ```bash
-sh egs/tts/UniCATS/CTXtxt2vec/run.sh --stage 2 --name [YourExptName]
+bash egs/tts/UniCATS/CTXtxt2vec/run.sh --stage 2 --name [YourExptName]
 ```
 
 
@@ -154,7 +154,7 @@ You should prepare you own utt2prompt file, following the format given above, an
 After that, decoding with context prepended (a.k.a. continuation) can be performed by:
 
 ```bash
-sh egs/tts/UniCATS/CTXtxt2vec/run.sh --stage 3
+bash egs/tts/UniCATS/CTXtxt2vec/run.sh --stage 3
 ```
 
 ## Vocoding to waveform
